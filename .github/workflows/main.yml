@@ -4,9 +4,9 @@
 
 name: Rust Code Quality
 
-on:
-  workflow_dispatch:
-
+on: 
+  push:
+  
 jobs:
   matrix_build:
     runs-on: ${{ matrix.os }}
@@ -17,5 +17,7 @@ jobs:
     - uses: actions/checkout@v2
     - name: Check Cargo FMT
       run: cargo fmt --check
+    - name: Run Unit Tests
+      run: cargo test
     - name: Make sure Rust builds correctly
       run: cargo build
